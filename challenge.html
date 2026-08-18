@@ -530,6 +530,7 @@
   const gameContainer = document.querySelector('.game-container');
   
   function handleTouch(e) {
+    if (e.target.closest('button')) return; // Allow button clicks
     e.preventDefault(); // Prevent scrolling
     
     // Reset keys
@@ -554,6 +555,7 @@
   gameContainer.addEventListener('touchstart', handleTouch, { passive: false });
   gameContainer.addEventListener('touchmove', handleTouch, { passive: false });
   gameContainer.addEventListener('touchend', (e) => {
+    if (e.target.closest('button')) return; // Allow button clicks
     e.preventDefault();
     if (e.touches.length === 0) {
       keys.ArrowLeft = false;
@@ -563,6 +565,7 @@
     }
   }, { passive: false });
   gameContainer.addEventListener('touchcancel', (e) => {
+    if (e.target.closest('button')) return; // Allow button clicks
     keys.ArrowLeft = false;
     keys.ArrowRight = false;
   });
