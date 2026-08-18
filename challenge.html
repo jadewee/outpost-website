@@ -490,7 +490,7 @@
   let score = 0;
   let gameOver = false;
   let gameStarted = false;
-  let baseGravity = 0.15; // Start much slower
+  let baseGravity = 0.3; // Increased starting speed
   let currentGravity = baseGravity;
   let lastLevel = 1;
   let levelUpTimer = 0;
@@ -745,9 +745,9 @@
       this.y = GAME_HEIGHT / 2;
       this.vx = 0;
       this.vy = 0;
-      this.baseJumpStrength = -7; 
+      this.baseJumpStrength = -10; 
       this.jumpStrength = this.baseJumpStrength;
-      this.speed = 6;
+      this.speed = 8;
     }
 
     update() {
