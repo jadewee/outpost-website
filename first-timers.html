@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Timers - Outpost Climbing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --brand-blue: #92c7d7;
+      --brand-cream: #f0e8db;
+      --brand-tan: #d9b382;
+      --brand-green: #4c6a5f;
+      --brand-yellow: #f3c37a;
+
+      --orange: var(--brand-yellow);
+      --blue: var(--brand-blue);
+      --green: var(--brand-green);
+      --yellow: var(--brand-tan);
+      --purple: var(--brand-green);
+      --bg-light: var(--brand-cream);
+      --text-dark: var(--brand-green);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fredoka', sans-serif;
+      margin-top: 0;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Navbar */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 5%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; font-family: 'Fredoka', sans-serif;
+      font-size: 28px; font-weight: 700; color: var(--purple);
+    }
+    .nav-logo img { height: 40px; object-fit: contain; }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { font-weight: 700; font-size: 18px; color: var(--text-dark); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+
+    /* Buttons */
+    .btn {
+      background-color: var(--orange); color: var(--text-dark) !important;
+      padding: 12px 28px; border-radius: 30px; font-weight: 700; font-size: 18px;
+      box-shadow: 0 4px 0 #d9a85c; transition: all 0.1s; display: inline-block;
+      text-align: center; cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #d9a85c; }
+    .btn:active { transform: translateY(4px); box-shadow: none; }
+    
+    .btn.blue { background-color: var(--blue); box-shadow: 0 4px 0 #72a5b5; color: white !important; }
+    .btn.blue:hover { box-shadow: 0 2px 0 #72a5b5; }
+    .btn.green { background-color: var(--green); box-shadow: 0 4px 0 #2c4a3f; color: white !important; }
+    .btn.green:hover { box-shadow: 0 2px 0 #2c4a3f; }
+
+    /* Hero */
+    .hero {
+      background-color: var(--green);
+      color: white;
+      padding: 100px 20px 140px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 { font-size: clamp(40px, 6vw, 70px); margin-bottom: 20px; text-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+    .hero p { font-size: 22px; max-width: 750px; margin: 0 auto 40px auto; font-weight: 700; color: rgba(255,255,255,0.9); }
+    
+    /* Wavy divider */
+    .wave { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: translateY(1px); }
+    .wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
+    .wave .shape-fill { fill: var(--bg-light); }
+
+    /* Sections */
+    .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .section-title { font-size: 45px; color: var(--purple); margin-bottom: 50px; }
+    
+    /* Steps Grid */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 80px;
+    }
+    .step-card {
+      background: white; border-radius: 30px; padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative;
+    }
+    .step-number {
+      width: 50px; height: 50px; background: var(--orange); color: var(--text-dark);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: bold; position: absolute; top: -20px; left: 50%;
+      transform: translateX(-50%); box-shadow: 0 4px 0 #d9a85c;
+    }
+    .step-card h3 { font-size: 26px; margin-top: 10px; margin-bottom: 15px; }
+    .step-card p { font-size: 18px; color: #666; line-height: 1.5; font-weight: 500; }
+
+    /* Rules Banner */
+    .rules-banner {
+      background: var(--blue); border-radius: 40px; padding: 50px; color: white;
+      text-align: left; box-shadow: 0 15px 30px rgba(146, 199, 215, 0.4);
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    }
+    .rules-content { flex: 1; min-width: 300px; }
+    .rules-banner h2 { font-size: 40px; margin-bottom: 15px; }
+    .rules-banner p { font-size: 20px; font-weight: 600; margin-bottom: 25px; line-height: 1.5; }
+    
+    .rules-list { display: flex; flex-direction: column; gap: 15px; }
+    .rule-item { display: flex; align-items: center; gap: 15px; font-size: 18px; font-weight: 700; background: rgba(255,255,255,0.2); padding: 15px 20px; border-radius: 20px; }
+    .rule-item span { font-size: 24px; }
+
+    /* Footer */
+    footer { background: var(--purple); color: white; text-align: center; padding: 40px 20px; font-weight: 600; margin-top: 80px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="outpost_logo.png" alt="Outpost" onerror="this.style.display='none'">
+      Outpost
+    </a>
+    <div class="nav-links">
+      <div style="display: flex; align-items: center; gap: 5px; background: rgba(146, 199, 215, 0.2); padding: 8px 15px; border-radius: 20px;">
+        <span style="font-size: 18px;">📍</span>
+        <select style="border:none; outline:none; font-family:'Quicksand', sans-serif; font-weight:700; font-size:16px; color:var(--text-dark); background:transparent; cursor:pointer; -webkit-appearance: none; appearance: none; padding-right: 10px;">
+          <option>Outpost HQ (Main)</option>
+          <option>Outpost East</option>
+          <option>Outpost West</option>
+        </select>
+        <span style="font-size: 12px; color: var(--text-dark);">▼</span>
+      </div>
+      <a href="first-timers.html">First Timers</a>
+      <a href="kids-and-parties.html">Kids & Parties</a>
+      <a href="groups.html">Groups</a>
+      <a href="coaching.html">Coaching & Trips</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#" class="btn">Book a Climb</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>New to Climbing? Welcome!</h1>
+    <p>No experience? No gear? No problem! Outpost Climbing is designed for absolute beginners and families. Here is everything you need to know.</p>
+    <a href="#how-it-works" class="btn">How It Works</a>
+
+    <!-- Wavy bottom edge -->
+    <div class="wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.3,196.36,99.51,241.65,85.83,283.47,63.45,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <h2 class="section-title">3 Easy Steps to Climb</h2>
+    
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Book & Sign Waiver</h3>
+        <p>Book your slot online to guarantee entry. Every climber needs a signed safety waiver (parents must sign for kids under 18).</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Dress Comfortably</h3>
+        <p>Wear flexible sports clothes. We'll provide the climbing harnesses and special climbing shoes at the front desk!</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Safety Briefing</h3>
+        <p>Our friendly staff will give you a quick 10-minute briefing on how to use the auto-belays safely. Then, you're free to climb!</p>
+      </div>
+    </div>
+
+    <!-- Visual House Rules -->
+    <div class="rules-banner">
+      <div class="rules-content">
+        <h2>House Rules</h2>
+        <p>We want everyone to have a safe and amazing time. Please keep these simple rules in mind while in the Fun Zone (L1) and Climb Zone (L3):</p>
+        <div class="rules-list">
+          <div class="rule-item"><span>👟</span> Covered sports shoes or climbing shoes only. No barefoot climbing!</div>
+          <div class="rule-item"><span>👀</span> Adult supervision is required for all children under 13.</div>
+          <div class="rule-item"><span>🏃‍♂️</span> No running under the climbing walls.</div>
+        </div>
+      </div>
+      <div style="flex: 1; text-align: center;">
+        <a href="#" class="btn" style="font-size: 24px; padding: 20px 40px;">Book Your First Climb</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>📍 Outpost Climbing Gym • Fun for the whole family!</p>
+  </footer>
+
+</body>
+</html>

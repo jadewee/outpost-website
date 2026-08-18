@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coaching & Trips - Outpost Climbing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --brand-blue: #92c7d7;
+      --brand-cream: #f0e8db;
+      --brand-tan: #d9b382;
+      --brand-green: #4c6a5f;
+      --brand-yellow: #f3c37a;
+
+      --orange: var(--brand-yellow);
+      --blue: var(--brand-blue);
+      --green: var(--brand-green);
+      --yellow: var(--brand-tan);
+      --purple: var(--brand-green);
+      --bg-light: var(--brand-cream);
+      --text-dark: var(--brand-green);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; margin-top: 0; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Navbar */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 5%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; font-family: 'Fredoka', sans-serif;
+      font-size: 28px; font-weight: 700; color: var(--purple);
+    }
+    .nav-logo img { height: 40px; object-fit: contain; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { font-weight: 700; font-size: 17px; color: var(--text-dark); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+
+    /* Buttons */
+    .btn {
+      background-color: var(--orange); color: var(--text-dark) !important;
+      padding: 12px 28px; border-radius: 30px; font-weight: 700; font-size: 18px;
+      box-shadow: 0 4px 0 #d9a85c; transition: all 0.1s; display: inline-block;
+      text-align: center; cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #d9a85c; }
+    .btn:active { transform: translateY(4px); box-shadow: none; }
+    
+    .btn.blue { background-color: var(--blue); box-shadow: 0 4px 0 #72a5b5; color: white !important; }
+    .btn.blue:hover { box-shadow: 0 2px 0 #72a5b5; }
+    .btn.green { background-color: var(--green); box-shadow: 0 4px 0 #2c4a3f; color: white !important; }
+    .btn.green:hover { box-shadow: 0 2px 0 #2c4a3f; }
+
+    /* Hero */
+    .hero {
+      background-color: var(--blue);
+      color: white;
+      padding: 100px 20px 140px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 { font-size: clamp(40px, 6vw, 70px); margin-bottom: 20px; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+    .hero p { font-size: 22px; max-width: 750px; margin: 0 auto 40px auto; font-weight: 700; color: rgba(255,255,255,0.9); }
+    
+    /* Wavy divider */
+    .wave { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: translateY(1px); }
+    .wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
+    .wave .shape-fill { fill: var(--bg-light); }
+
+    /* Sections */
+    .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .section-title { font-size: 45px; color: var(--purple); margin-bottom: 50px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+    .card { background: white; border-radius: 35px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s; border: 4px solid transparent; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-10px); border-color: var(--blue); }
+    .card h3 { font-size: 28px; margin-bottom: 15px; }
+    .card p { font-size: 18px; color: #666; font-weight: 500; line-height: 1.5; margin-bottom: 30px; flex-grow: 1; }
+    .icon { font-size: 60px; margin-bottom: 20px; }
+
+    /* Footer */
+    footer { background: var(--purple); color: white; text-align: center; padding: 40px 20px; font-weight: 600; margin-top: 80px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="outpost_logo.png" alt="Outpost" onerror="this.style.display='none'">
+      Outpost
+    </a>
+    <div class="nav-links">
+      <div style="display: flex; align-items: center; gap: 5px; background: rgba(146, 199, 215, 0.2); padding: 8px 15px; border-radius: 20px;">
+        <span style="font-size: 18px;">📍</span>
+        <select style="border:none; outline:none; font-family:'Quicksand', sans-serif; font-weight:700; font-size:16px; color:var(--text-dark); background:transparent; cursor:pointer; -webkit-appearance: none; appearance: none; padding-right: 10px;">
+          <option>Outpost HQ (Main)</option>
+          <option>Outpost East</option>
+          <option>Outpost West</option>
+        </select>
+        <span style="font-size: 12px; color: var(--text-dark);">▼</span>
+      </div>
+      <a href="first-timers.html">First Timers</a>
+      <a href="kids-and-parties.html">Kids & Parties</a>
+      <a href="groups.html">Groups</a>
+      <a href="coaching.html">Coaching & Trips</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#" class="btn">Book a Climb</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Take Your Climbing Higher</h1>
+    <p>Whether you're looking to get certified, improve your technique, or join us on an epic overseas rock trip, we have a program for you.</p>
+    <a href="#programs" class="btn">View Programs</a>
+
+    <div class="wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.3,196.36,99.51,241.65,85.83,283.47,63.45,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="programs">
+    <h2 class="section-title">Coaching & Certifications</h2>
+    
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🧗</div>
+        <h3>Adult Coaching</h3>
+        <p>Break through your plateau! Group classes focusing on dynamic movement, endurance, and advanced bouldering techniques.</p>
+        <a href="#" class="btn blue">View Schedule</a>
+      </div>
+      <div class="card">
+        <div class="icon">📜</div>
+        <h3>SNCS Certifications</h3>
+        <p>Get certified for belaying! We offer Singapore National Climbing Standards (SNCS) Level 1, 2, and 3 courses regularly.</p>
+        <a href="#" class="btn green">Register for SNCS</a>
+      </div>
+      <div class="card">
+        <div class="icon">✈️</div>
+        <h3>Outdoor Rock Trips</h3>
+        <p>Join the Outpost community on our guided overseas rock trips! We regularly organize trips to Chiang Mai, Ipoh, and Japan.</p>
+        <a href="#" class="btn">View Calendar</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>📍 Outpost Climbing Gym • Fun for the whole family!</p></footer>
+
+</body>
+</html>

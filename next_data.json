@@ -1,0 +1,91 @@
+{
+  "props": {
+    "shouldNotCrawl": false,
+    "__N_SSP": true,
+    "pageProps": {
+      "meta": {
+        "id": "683ed572-0576-495f-9b3f-be01f20a25d4",
+        "name": "Home",
+        "author_id": "00000000-0000-0000-0000-000000000000",
+        "url": {
+          "href": "https://www.outpostclimbing.sg/home",
+          "origin": "https://www.outpostclimbing.sg",
+          "protocol": "https:",
+          "host": "www.outpostclimbing.sg",
+          "hostname": "www.outpostclimbing.sg",
+          "port": "",
+          "pathname": "/home",
+          "search": "",
+          "hash": ""
+        },
+        "featured_image_url": "",
+        "content": "",
+        "status": 1,
+        "published_on": "2023-03-01T11:31:33+00:00",
+        "seo_title": "Home",
+        "seo_description": "",
+        "seo_image_url": "",
+        "is_seo_disable": false,
+        "analytics": {
+          "google_analytics_code": "AW-16566026762",
+          "gogole_tag_code": "GTM-WBQDC3XS",
+          "google_tag_code": "GTM-WBQDC3XS",
+          "facebook_pixels_code": "543214148194981",
+          "tiktok_code": null,
+          "gass_code": null,
+          "facebook_domain_verification_code": "543214148194981",
+          "google_site_verification_code": null
+        },
+        "page": "home",
+        "themeSetting": {
+          "id": "7f097403-d9c6-4dca-9d88-5e72b8f4bf62",
+          "name": "Alpha",
+          "color": {
+            "primary": "#ECE5D7",
+            "secondary": {
+              "background": "#ffffff",
+              "text": "#000000"
+            }
+          },
+          "social": {
+            "facebook": "https://www.facebook.com/outpostclimbing",
+            "tiktok": null,
+            "twitter": "",
+            "instagram": "https://www.instagram.com/outpostclimbing/",
+            "youtube": ""
+          },
+          "button": {
+            "solid": {
+              "background": "#000000",
+              "text": "#FFFFFF"
+            },
+            "outline": "#010101"
+          },
+          "typography": {
+            "headerFont": "Montserrat",
+            "bodyFont": "Roboto"
+          },
+          "favicon": "https://ik.imagekit.io/rezeve/business/c8961b16-cd44-466f-8882-8b41fdb535d4/image/editor/faa658cd-7ced-4995-bf72-3241f6479cdd~IMG-0365-(3).png",
+          "logo": null,
+          "image": "https://ik.imagekit.io/rezeve/staging/images/theme-card2.png",
+          "is_default": true,
+          "last_edit": "2023-03-01T11:31:23+00:00",
+          "css": ""
+        }
+      },
+      "businessName": "Outpost Climbing",
+      "businessId": "c8961b16-cd44-466f-8882-8b41fdb535d4"
+    }
+  },
+  "page": "/home",
+  "query": {},
+  "buildId": "ZjKtmldG37ULART1QnmMF",
+  "runtimeConfig": {},
+  "isFallback": false,
+  "dynamicIds": [
+    41392
+  ],
+  "gssp": true,
+  "appGip": true,
+  "scriptLoader": []
+}

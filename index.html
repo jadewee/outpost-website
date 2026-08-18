@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outpost Climbing - Fun for the Whole Family!</title>
+  
+  <!-- Fun, rounded Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Outpost Brand Palette */
+      --brand-blue: #92c7d7;
+      --brand-cream: #f0e8db;
+      --brand-tan: #d9b382;
+      --brand-green: #4c6a5f;
+      --brand-yellow: #f3c37a;
+
+      /* Mapped to playful UI elements */
+      --orange: var(--brand-yellow);
+      --blue: var(--brand-blue);
+      --green: var(--brand-green);
+      --yellow: var(--brand-tan);
+      --purple: var(--brand-green);
+      --bg-light: var(--brand-cream);
+      --text-dark: var(--brand-green);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fredoka', sans-serif;
+      margin-top: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--purple);
+    }
+
+    .nav-logo img {
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-dark);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    /* Buttons */
+    .btn {
+      background-color: var(--orange);
+      color: var(--text-dark) !important;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 4px 0 #d9a85c; /* darker yellow */
+      transition: all 0.1s;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #d9a85c;
+    }
+    .btn:active {
+      transform: translateY(4px);
+      box-shadow: none;
+    }
+    
+    .btn.blue {
+      background-color: var(--blue);
+      box-shadow: 0 4px 0 #72a5b5; /* darker blue */
+      color: white !important;
+    }
+    .btn.blue:hover {
+      box-shadow: 0 2px 0 #72a5b5;
+    }
+    .btn.green {
+      background-color: var(--green);
+      box-shadow: 0 4px 0 #2c4a3f; /* darker green */
+      color: white !important;
+    }
+    .btn.green:hover {
+      box-shadow: 0 2px 0 #2c4a3f;
+    }
+
+    /* Hero */
+    .hero {
+      background-color: var(--blue);
+      color: white;
+      padding: 100px 20px 140px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 80px);
+      margin-bottom: 20px;
+      text-shadow: 3px 5px 0 rgba(0,0,0,0.15);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: clamp(20px, 2.5vw, 26px);
+      max-width: 750px;
+      margin: 0 auto 40px auto;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-buttons .btn {
+      font-size: 24px;
+      padding: 18px 45px;
+      border-radius: 40px;
+    }
+
+    /* Wavy divider */
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: translateY(1px); 
+    }
+
+    .wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 80px;
+    }
+
+    .wave .shape-fill {
+      fill: var(--bg-light);
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 52px;
+      color: var(--purple);
+      margin-bottom: 60px;
+    }
+
+    /* Cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 35px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 4px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--yellow);
+    }
+
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px auto;
+      font-size: 45px;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+    }
+
+    .feature-card:nth-child(2) .feature-icon { background: var(--green); }
+    .feature-card:nth-child(3) .feature-icon { background: var(--blue); }
+
+    .feature-card h3 {
+      font-size: 30px;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* Game Banner */
+    .game-banner {
+      background: linear-gradient(135deg, var(--orange) 0%, #e0ab5f 100%);
+      border-radius: 40px;
+      padding: 60px 50px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px; 
+      margin: 40px auto 100px auto;
+      box-shadow: 0 20px 40px rgba(217, 179, 130, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-banner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .game-banner h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      text-shadow: 2px 3px 0 rgba(255,255,255,0.3);
+    }
+
+    .game-banner p {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 35px;
+      color: var(--text-dark);
+    }
+
+    .game-mascot {
+      font-size: 150px;
+      position: absolute;
+      right: 40px;
+      bottom: -20px;
+      z-index: 1;
+      transform: rotate(-10deg);
+      animation: bounce 2.5s infinite ease-in-out alternate;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0) rotate(-10deg); }
+      100% { transform: translateY(-25px) rotate(5deg); }
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    @media (max-width: 768px) {
+      .game-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 30px;
+      }
+      .game-banner-content {
+        text-align: center;
+      }
+      .game-mascot {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        font-size: 100px;
+        margin-top: 30px;
+        animation: none;
+      }
+      .nav-links {
+        display: none; 
+      }
+      .hero-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="outpost_logo.png" alt="Outpost" onerror="this.style.display='none'">
+      Outpost
+    </a>
+    <div class="nav-links">
+      <div style="display: flex; align-items: center; gap: 5px; background: rgba(146, 199, 215, 0.2); padding: 8px 15px; border-radius: 20px;">
+        <span style="font-size: 18px;">📍</span>
+        <select style="border:none; outline:none; font-family:'Quicksand', sans-serif; font-weight:700; font-size:16px; color:var(--text-dark); background:transparent; cursor:pointer; -webkit-appearance: none; appearance: none; padding-right: 10px;">
+          <option>Outpost HQ (Main)</option>
+          <option>Outpost East</option>
+          <option>Outpost West</option>
+        </select>
+        <span style="font-size: 12px; color: var(--text-dark);">▼</span>
+      </div>
+      <a href="first-timers.html">First Timers</a>
+      <a href="kids-and-parties.html">Kids & Parties</a>
+      <a href="groups.html">Groups</a>
+      <a href="coaching.html">Coaching & Trips</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#" class="btn">Book a Climb</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Climbing is for Everyone!</h1>
+    <p>Experience the most fun, colorful, and action-packed indoor climbing facility. No experience needed!</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn">Book Now</a>
+      <a href="#" class="btn green">First Time Here?</a>
+    </div>
+
+    <!-- Wavy bottom edge -->
+    <div class="wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.3,196.36,99.51,241.65,85.83,283.47,63.45,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Game Banner (Lead Gen) -->
+  <div class="game-banner">
+    <div class="game-banner-content">
+      <h2>Take the Outpost Challenge!</h2>
+      <p>Play our exclusive Otter Jump mini-game to unlock free day passes and founding member merch.</p>
+      <a href="challenge.html" class="btn blue">Play the Game 🎮</a>
+    </div>
+    <div class="game-mascot">🦦</div>
+  </div>
+
+  <!-- Features Section -->
+  <section class="section">
+    <h2 class="section-title">Why Climb With Us?</h2>
+    
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-icon">🧗‍♀️</div>
+        <h3>Safe & Easy</h3>
+        <p>Our automatic belay systems mean you don't need any training or a partner. Just clip in and climb up!</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-icon">🎈</div>
+        <h3>Epic Parties</h3>
+        <p>Host the best birthday party ever! We provide the climbs, the pizza, and a dedicated party host.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>Fun Challenges</h3>
+        <p>Race your friends on the Speed Wall, tackle the Twister, or leap from the Leap of Faith tower!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <h2>Outpost Climbing</h2>
+    <p>123 Adventure Way • Fun for ages 4 to 104!</p>
+    <p style="margin-top: 30px; color: #888;">&copy; 2026 Outpost Climbing</p>
+  </footer>
+
+</body>
+</html>
