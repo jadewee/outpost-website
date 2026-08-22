@@ -1,178 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing - Outpost Climbing</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --brand-blue: #92c7d7;
-      --brand-cream: #f0e8db;
-      --brand-tan: #d9b382;
-      --brand-green: #4c6a5f;
-      --brand-yellow: #f3c37a;
-
-      --orange: var(--brand-yellow);
-      --blue: var(--brand-blue);
-      --green: var(--brand-green);
-      --yellow: var(--brand-tan);
-      --purple: var(--brand-green);
-      --bg-light: var(--brand-cream);
-      --text-dark: var(--brand-green);
-    }
-
-    body { margin: 0; font-family: 'Quicksand', sans-serif; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
-    h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; margin-top: 0; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Navbar */
-    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Fredoka', sans-serif; font-size: 28px; font-weight: 700; color: var(--purple); }
-    .nav-logo img { height: 40px; object-fit: contain; }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav-links a { font-weight: 700; font-size: 17px; color: var(--text-dark); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--orange); }
-
-    /* Buttons */
-    .btn { background-color: var(--orange); color: var(--text-dark) !important; padding: 12px 28px; border-radius: 30px; font-weight: 700; font-size: 18px; box-shadow: 0 4px 0 #d9a85c; transition: all 0.1s; display: inline-block; text-align: center; cursor: pointer; border: none; }
-    .btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #d9a85c; }
-    .btn:active { transform: translateY(4px); box-shadow: none; }
-    .btn.blue { background-color: var(--blue); box-shadow: 0 4px 0 #72a5b5; color: white !important; }
-    .btn.blue:hover { box-shadow: 0 2px 0 #72a5b5; }
-
-    /* Hero */
-    .hero { background-color: var(--blue); color: white; padding: 100px 20px 140px 20px; text-align: center; position: relative; }
-    .hero h1 { font-size: clamp(40px, 6vw, 70px); margin-bottom: 20px; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
-    .hero p { font-size: 22px; max-width: 750px; margin: 0 auto 40px auto; font-weight: 700; color: rgba(255,255,255,0.9); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages & Credits | Outpost Climbing</title>
     
-    .wave { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: translateY(1px); }
-    .wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
-    .wave .shape-fill { fill: var(--bg-light); }
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' ; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://dummyimage.com; connect-src 'self'; frame-ancestors 'none';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-    /* Pricing Section */
-    .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
-    .section-title { font-size: 45px; color: var(--purple); margin-bottom: 50px; }
-    
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-    
-    .pricing-card { 
-      background: white; border-radius: 35px; padding: 50px 30px; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s; 
-      border: 4px solid transparent; display: flex; flex-direction: column; 
-    }
-    .pricing-card.featured {
-      border-color: var(--orange);
-      transform: scale(1.05);
-      position: relative;
-    }
-    .pricing-card.featured:hover { transform: scale(1.05) translateY(-10px); }
-    .pricing-card:hover { transform: translateY(-10px); }
-    
-    .badge {
-      position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-      background: var(--orange); color: var(--text-dark); padding: 5px 20px;
-      border-radius: 20px; font-weight: bold; font-size: 14px;
-    }
-
-    .pricing-card h3 { font-size: 28px; margin-bottom: 15px; }
-    .price { font-size: 55px; font-family: 'Fredoka', sans-serif; color: var(--purple); margin-bottom: 10px; }
-    .price span { font-size: 20px; color: #888; font-family: 'Quicksand', sans-serif; }
-    
-    .features-list { list-style: none; padding: 0; margin: 30px 0; text-align: left; flex-grow: 1; }
-    .features-list li { font-size: 18px; color: #555; font-weight: 500; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-    .features-list li::before { content: '✓'; color: var(--green); font-weight: bold; font-size: 22px; }
-
-    /* Footer */
-    footer { background: var(--purple); color: white; text-align: center; padding: 40px 20px; font-weight: 600; margin-top: 80px; }
-  </style>
+    <script src="tailwind.js"></script>
 </head>
-<body>
-
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo">
-      <img src="outpost_logo.png" alt="Outpost" onerror="this.style.display='none'">
-      Outpost
-    </a>
-    <div class="nav-links">
-      <div style="display: flex; align-items: center; gap: 5px; background: rgba(146, 199, 215, 0.2); padding: 8px 15px; border-radius: 20px;">
-        <span style="font-size: 18px;">📍</span>
-        <select style="border:none; outline:none; font-family:'Quicksand', sans-serif; font-weight:700; font-size:16px; color:var(--text-dark); background:transparent; cursor:pointer; -webkit-appearance: none; appearance: none; padding-right: 10px;">
-          <option>Outpost HQ (Main)</option>
-          <option>Outpost East</option>
-          <option>Outpost West</option>
-        </select>
-        <span style="font-size: 12px; color: var(--text-dark);">▼</span>
-      </div>
-      <a href="first-timers.html">First Timers</a>
-      <a href="kids-and-parties.html">Kids & Parties</a>
-      <a href="groups.html">Groups</a>
-      <a href="coaching.html">Coaching & Trips</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="#" class="btn">Book a Climb</a>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <h1>Simple, Affordable Pricing</h1>
-    <p>Whether you're dropping in for the day or climbing every week, we have the perfect package for you.</p>
+<body class="bg-gray-50 font-sans antialiased text-gray-900">
     
-    <div class="wave">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.3,196.36,99.51,241.65,85.83,283.47,63.45,321.39,56.44Z" class="shape-fill"></path>
-      </svg>
+    <!-- Global Navigation -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 bg-gray-50">Home</a>
+                <a href="first-timers.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">First Timers</a>
+                <a href="kids-and-parties.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Kids & Parties</a>
+                <a href="coaching.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Coaching & Trips</a>
+                <a href="groups.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Groups</a>
+                <a href="pricing.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Pricing</a>
+                <div class="border-t border-gray-200 my-2"></div>
+                <div class="px-3 py-2 text-sm font-bold text-gray-500 uppercase">Locations</div>
+                <a href="crawford.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Crawford Flagship</a>
+                <a href="changi.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Changi T3</a>
+                <a href="clementi.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Clementi</a>
+                <button class="w-full text-left mt-2 block px-3 py-2 rounded-md text-base font-medium text-blue-700 bg-blue-50">Sign Waiver</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Modal UI (Used for secure user interaction instead of alerts) -->
+    <div id="globalModal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                    <div>
+                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                            <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                            </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-5">
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modalTitle">Information</h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500" id="modalMessage">Message body here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-6">
+                        <button type="button" id="closeModalBtn" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Got it, thanks!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="pricing-grid">
-      
-      <div class="pricing-card">
-        <h3>Day Pass</h3>
-        <div class="price">$25 <span>/ day</span></div>
-        <p style="color: #888; font-weight: 500;">Perfect for tourists and first-timers.</p>
-        <ul class="features-list">
-          <li>Full day access</li>
-          <li>Access to L1 and L3 zones</li>
-          <li>Free safety briefing</li>
-        </ul>
-        <a href="#" class="btn blue">Buy Pass</a>
-      </div>
 
-      <div class="pricing-card featured">
-        <div class="badge">Most Popular</div>
-        <h3>10x Multi-Pass</h3>
-        <div class="price">$200 <span>/ pack</span></div>
-        <p style="color: #888; font-weight: 500;">Great for families who climb together.</p>
-        <ul class="features-list">
-          <li>10 individual entries</li>
-          <li>Shareable with friends & family</li>
-          <li>Valid for 6 months</li>
-          <li>10% off gear rental</li>
-        </ul>
-        <a href="#" class="btn">Buy 10x Pass</a>
-      </div>
+    <main class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-black text-center mb-4">Packages & Pricing</h1>
+            <p class="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">Flexible options whether you drop by once a month or climb every day.</p>
 
-      <div class="pricing-card">
-        <h3>Monthly Membership</h3>
-        <div class="price">$99 <span>/ mo</span></div>
-        <p style="color: #888; font-weight: 500;">For the dedicated local climbers.</p>
-        <ul class="features-list">
-          <li>Unlimited climbing</li>
-          <li>Free gear rental</li>
-          <li>15% off retail shop</li>
-          <li>Bring a first-timer free (once a month)</li>
-        </ul>
-        <a href="#" class="btn blue">Subscribe</a>
-      </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Single Entries -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="p-8 bg-gray-50 border-b border-gray-100 text-center">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Single Entry</h3>
+                        <p class="text-gray-500 text-sm">Standard day pass</p>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex justify-between items-center"><span class="text-gray-600">Adult</span><span class="font-bold">$26</span></li>
+                            <li class="flex justify-between items-center"><span class="text-gray-600">Youth (≤20)</span><span class="font-bold">$20</span></li>
+                            <li class="flex justify-between items-center"><span class="text-gray-600">Shoe Rental</span><span class="font-bold">$5</span></li>
+                        </ul>
+                        <button class="w-full py-3 bg-gray-100 text-gray-800 font-bold rounded-lg hover:bg-gray-200">Buy Pass</button>
+                    </div>
+                </div>
 
-    </div>
-  </section>
+                <!-- First Timer -->
+                <div class="bg-white rounded-2xl shadow-xl border-2 border-blue-500 overflow-hidden flex flex-col relative transform md:-translate-y-4">
+                    <div class="absolute top-0 inset-x-0 bg-blue-500 text-white text-xs font-bold text-center py-1 uppercase tracking-wider">Best for Beginners</div>
+                    <div class="p-8 bg-blue-50 border-b border-blue-100 text-center mt-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter Packs</h3>
+                        <p class="text-gray-500 text-sm">Everything you need to begin</p>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex flex-col gap-1 border-b border-gray-100 pb-3">
+                                <div class="flex justify-between"><strong class="text-gray-900">First-Timer Pack</strong><span class="font-bold text-blue-600">$32</span></div>
+                                <span class="text-xs text-gray-500">1 Entry + Free Harness & Shoes</span>
+                            </li>
+                            <li class="flex flex-col gap-1">
+                                <div class="flex justify-between"><strong class="text-gray-900">Outpost Starter Pack</strong><span class="font-bold text-blue-600">$55</span></div>
+                                <span class="text-xs text-gray-500">3 Entries + Basics Classes</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 shadow-md">Get Started</button>
+                    </div>
+                </div>
 
-  <footer><p>📍 Outpost Climbing Gym • Fun for the whole family!</p></footer>
+                <!-- OP Credits -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="p-8 bg-gray-50 border-b border-gray-100 text-center">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">OP Credits</h3>
+                        <p class="text-gray-500 text-sm">Shareable currency ($1 = 1 Credit)</p>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <ul class="space-y-4 mb-8 text-center">
+                            <li class="font-bold text-3xl text-gray-900">$220 <span class="text-lg text-gray-500 font-normal">/ 220 Credits</span></li>
+                            <li class="text-sm text-gray-500">Use for entry, rentals, classes, and merch across all locations. Fully shareable with friends!</li>
+                        </ul>
+                        <button class="w-full py-3 bg-gray-100 text-gray-800 font-bold rounded-lg hover:bg-gray-200">Buy Credits</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-gray-900 text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-6 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-bold mb-2">Outpost Resident Memberships</h3>
+                    <p class="text-gray-400">Auto-renewing monthly memberships for unlimited climbing, priority booking, and pro-shop discounts.</p>
+                </div>
+                <button class="shrink-0 px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 shadow-lg">View Memberships</button>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Use textContent to set dynamic strings safely.
+        function showModal(title, message) {
+            const modal = document.getElementById('globalModal');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            modal.classList.remove('hidden');
+        }
+
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            document.getElementById('globalModal').classList.add('hidden');
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Mock integration for Rezerv and Waiver buttons
+        document.getElementById('signWaiverBtn').addEventListener('click', () => {
+            showModal('Sign Waiver', 'Redirecting to secure external waiver signing portal...');
+        });
+        document.getElementById('bookClimbBtn').addEventListener('click', () => {
+            showModal('Rezerv Integration', 'Opening Rezerv booking modal/portal...');
+        });
+    </script>
 
 </body>
 </html>
