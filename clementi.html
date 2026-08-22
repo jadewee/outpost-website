@@ -371,9 +371,9 @@
     
     <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
     <div class="nav-links">
-      <div style="display: flex; align-items: center; gap: 5px; padding: 8px 15px;">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px 20px; border: 2px solid #eaeaea; border-radius: 30px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='#eaeaea'">
         <span style="font-size: 18px;">📍</span>
-        <select onchange="if(this.value) window.location.href=this.value;" style="border:none; outline:none; font-family:'Quicksand', sans-serif; font-weight:700; font-size:16px; color:var(--text-dark); background:transparent; cursor:pointer; -webkit-appearance: none; appearance: none; padding-right: 10px;">
+        <select onchange="if(this.value) window.location.href=this.value;" style="border:none; outline:none; font-family:'Quicksand', sans-serif; font-weight:700; font-size:16px; color:var(--text-dark); background:transparent; cursor:pointer; -webkit-appearance: none; appearance: none; padding-right: 5px;">
           <option value="index.html">Outpost Main</option>
           <option value="crawford.html">Crawford Flagship</option>
           <option value="changi.html">Changi Airport T3</option>
