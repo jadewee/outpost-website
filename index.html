@@ -464,6 +464,64 @@
     </div>
   </section>
 
+  <!-- Classes Widget -->
+  <section class="section" id="schedule">
+    <h2 class="section-title">Upcoming Classes</h2>
+    <iframe
+      id="rezerv-widget-iframe"
+      src="https://widgets.rezerv.co/classes?businessId=c8961b16-cd44-466f-8882-8b41fdb535d4&businessUrl=https%3A%2F%2Foutpostclimbing.sg&classType=Show+all&fontFamily=Roboto&gaEnabled=false&gaId=&hideBranding=false&layout=list&openInNewTab=true&outlinedButtonColor=%23010101&primaryBackground=%23ECE5D7&scheduleViewType=list&scheduleViewTypeOrder=%5B%22list%22%2C%22grid%22%5D&scheduleViewTypeVisibility=%7B%22list%22%3Atrue%2C%22grid%22%3Atrue%7D&secondaryBackground=%23FFFFFF&showRatings=true&solidButtonBackground=%23000000&solidButtonText=%23FFFFFF&textColor=%23000000"
+      frameborder="0"
+      style="border: none; width: 100%; height: 1080px;"
+      data-hide-branding="false"
+      data-show-ratings="true"
+    ></iframe>
+    <script>
+    (function () {
+      var IFRAME_SELECTOR = "#rezerv-widget-iframe";
+      var WIDGET_ORIGIN = "https://widgets.rezerv.co";
+      var UTM_REQUEST_MESSAGE_TYPE = "REQUEST_UTM_PARAMS";
+      var UTM_KEYS = ["utm_source", "utm_campaign", "utm_medium", "utm_term", "utm_content"];
+      function collectUtms() {
+        var params = new URLSearchParams(window.location.search);
+        var utms = {};
+        UTM_KEYS.forEach(function (key) {
+          var value = params.get(key);
+          if (value) utms[key] = value;
+        });
+        return utms;
+      }
+      function postUtmsToWidget(iframe, utms) {
+        if (!iframe || !iframe.contentWindow || Object.keys(utms).length === 0) return;
+        iframe.contentWindow.postMessage({ type: "UTM_PARAMS", utms: utms }, WIDGET_ORIGIN);
+      }
+      function init() {
+        var iframe = document.querySelector(IFRAME_SELECTOR);
+        if (!iframe) return;
+        function sendUtms() {
+          postUtmsToWidget(iframe, collectUtms());
+        }
+        iframe.addEventListener("load", function () {
+          sendUtms();
+          setTimeout(sendUtms, 500);
+          setTimeout(sendUtms, 1500);
+        });
+        window.addEventListener("message", function (event) {
+          if (event.origin !== WIDGET_ORIGIN) return;
+          if (event.data && event.data.type === UTM_REQUEST_MESSAGE_TYPE) {
+            sendUtms();
+          }
+        });
+        sendUtms();
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <h2>Outpost Climbing</h2>
