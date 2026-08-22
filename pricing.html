@@ -129,49 +129,92 @@
   </section>
 
   <section class="section">
-    <div class="pricing-grid">
-      
-      <div class="pricing-card">
-        <h3>Day Pass</h3>
-        <div class="price">$25 <span>/ day</span></div>
-        <p style="color: #888; font-weight: 500;">Perfect for tourists and first-timers.</p>
-        <ul class="features-list">
-          <li>Full day access</li>
-          <li>Access to L1 and L3 zones</li>
-          <li>Free safety briefing</li>
-        </ul>
-        <a href="#" class="btn blue">Buy Pass</a>
-      </div>
-
-      <div class="pricing-card featured">
-        <div class="badge">Most Popular</div>
-        <h3>10x Multi-Pass</h3>
-        <div class="price">$200 <span>/ pack</span></div>
-        <p style="color: #888; font-weight: 500;">Great for families who climb together.</p>
-        <ul class="features-list">
-          <li>10 individual entries</li>
-          <li>Shareable with friends & family</li>
-          <li>Valid for 6 months</li>
-          <li>10% off gear rental</li>
-        </ul>
-        <a href="#" class="btn">Buy 10x Pass</a>
-      </div>
-
-      <div class="pricing-card">
-        <h3>Monthly Membership</h3>
-        <div class="price">$99 <span>/ mo</span></div>
-        <p style="color: #888; font-weight: 500;">For the dedicated local climbers.</p>
-        <ul class="features-list">
-          <li>Unlimited climbing</li>
-          <li>Free gear rental</li>
-          <li>15% off retail shop</li>
-          <li>Bring a first-timer free (once a month)</li>
-        </ul>
-        <a href="#" class="btn blue">Subscribe</a>
-      </div>
-
-    </div>
+    <h2 class="section-title">Packages</h2>
+    <iframe
+      class="rezerv-widget-iframe"
+      src="https://widgets.rezerv.co/packages?businessId=c8961b16-cd44-466f-8882-8b41fdb535d4&businessUrl=https%3A%2F%2Foutpostclimbing.sg&fontFamily=Roboto&gaEnabled=false&gaId=&hideBranding=false&layout=list&openInNewTab=true&outlinedButtonColor=%23010101&primaryBackground=%23ECE5D7&scheduleViewType=list&scheduleViewTypeOrder=%5B%22list%22%2C%22grid%22%5D&scheduleViewTypeVisibility=%7B%22list%22%3Atrue%2C%22grid%22%3Atrue%7D&secondaryBackground=%23FFFFFF&showPrice=true&showRatings=true&solidButtonBackground=%23000000&solidButtonText=%23FFFFFF&subCategory=Show+all&textColor=%23000000"
+      frameborder="0"
+      style="border: none; width: 100%; height: 1080px;"
+      data-hide-branding="false"
+      data-show-ratings="true"
+      data-show-price="true"
+    ></iframe>
   </section>
+
+  <section class="section">
+    <h2 class="section-title">Memberships</h2>
+    <iframe
+      class="rezerv-widget-iframe"
+      src="https://widgets.rezerv.co/memberships?businessId=c8961b16-cd44-466f-8882-8b41fdb535d4&businessUrl=https%3A%2F%2Foutpostclimbing.sg&fontFamily=Roboto&gaEnabled=false&gaId=&hideBranding=false&layout=list&openInNewTab=true&outlinedButtonColor=%23010101&primaryBackground=%23ECE5D7&scheduleViewType=list&scheduleViewTypeOrder=%5B%22list%22%2C%22grid%22%5D&scheduleViewTypeVisibility=%7B%22list%22%3Atrue%2C%22grid%22%3Atrue%7D&secondaryBackground=%23FFFFFF&showPrice=true&showRatings=true&solidButtonBackground=%23000000&solidButtonText=%23FFFFFF&subCategory=Show+all&textColor=%23000000"
+      frameborder="0"
+      style="border: none; width: 100%; height: 1080px;"
+      data-hide-branding="false"
+      data-show-ratings="true"
+      data-show-price="true"
+    ></iframe>
+  </section>
+
+  <script>
+  (function () {
+    var IFRAME_SELECTOR = ".rezerv-widget-iframe";
+    var WIDGET_ORIGIN = "https://widgets.rezerv.co";
+    var UTM_REQUEST_MESSAGE_TYPE = "REQUEST_UTM_PARAMS";
+    var UTM_KEYS = ["utm_source", "utm_campaign", "utm_medium", "utm_term", "utm_content"];
+    
+    function collectUtms() {
+      var params = new URLSearchParams(window.location.search);
+      var utms = {};
+      UTM_KEYS.forEach(function (key) {
+        var value = params.get(key);
+        if (value) utms[key] = value;
+      });
+      return utms;
+    }
+    
+    function postUtmsToWidget(iframe, utms) {
+      if (!iframe || !iframe.contentWindow || Object.keys(utms).length === 0) return;
+      iframe.contentWindow.postMessage({ type: "UTM_PARAMS", utms: utms }, WIDGET_ORIGIN);
+    }
+    
+    function init() {
+      var iframes = document.querySelectorAll(IFRAME_SELECTOR);
+      if (iframes.length === 0) return;
+      
+      var utms = collectUtms();
+      
+      iframes.forEach(function(iframe) {
+        function sendUtms() {
+          postUtmsToWidget(iframe, utms);
+        }
+        iframe.addEventListener("load", function () {
+          sendUtms();
+          setTimeout(sendUtms, 500);
+          setTimeout(sendUtms, 1500);
+        });
+      });
+      
+      window.addEventListener("message", function (event) {
+        if (event.origin !== WIDGET_ORIGIN) return;
+        if (event.data && event.data.type === UTM_REQUEST_MESSAGE_TYPE) {
+          iframes.forEach(function(iframe) {
+            // We just broadcast to all iframes if one requests it
+            postUtmsToWidget(iframe, utms);
+          });
+        }
+      });
+      
+      iframes.forEach(function(iframe) {
+        postUtmsToWidget(iframe, utms);
+      });
+    }
+    
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+  </script>
 
   <footer><p>📍 Outpost Climbing Gym • Fun for the whole family!</p></footer>
 
